@@ -39,5 +39,8 @@ lazy val socks5Core = (crossProject(JSPlatform, JVMPlatform) in file("socks5/cor
   .settings(
     name := "socks5-core",
     libraryDependencies ++= Seq(
+      "co.fs2" %%% "fs2-io" % fs2Version,
     ),
   )
+
+val fs2Version = "3.12.0"
