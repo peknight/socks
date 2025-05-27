@@ -71,9 +71,8 @@ object Socks5Server extends IOApp.Simple:
       case l @ Left(error) => Pull.output1(Stream(socks5.code, NoAcceptableMethod.code)) >> Pull.pure(l)
     }
 
-  private def usernamePasswordAuth[F[_]](input: Stream[F, Byte])(f: UPassword => F[Status])
-                                        (using charset: Charset)
-  : Pull[F, Stream[F, Byte], Either[Error, Stream[F, Byte]]] =
+  private def passwordAuth[F[_]](input: Stream[F, Byte])(f: UPassword => F[Status])
+                                (using charset: Charset): Pull[F, Stream[F, Byte], Either[Error, Stream[F, Byte]]] =
     val eitherT =
       for
         stream <- EitherT(readVersion[F](input) { version =>
@@ -102,7 +101,7 @@ object Socks5Server extends IOApp.Simple:
     authMethod match
       case NoAuthenticationRequired => Pull.pure(input.asRight)
       case GSSAPI => ???
-      case UsernamePassword => usernamePasswordAuth(input)(password)
+      case UsernamePassword => passwordAuth(input)(password)
       case method @ IANAAssigned(code) => ???
       case method @ PrivateMethod(code) => ???
 
