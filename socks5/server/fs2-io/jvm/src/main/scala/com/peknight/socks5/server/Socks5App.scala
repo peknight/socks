@@ -1,4 +1,4 @@
-package com.peknight.socks5
+package com.peknight.socks5.server
 
 import cats.Monad
 import cats.effect.std.Console
@@ -9,6 +9,7 @@ import com.comcast.ip4s.{SocketAddress, host, port}
 import fs2.Stream
 import fs2.io.net.{Network, Socket}
 import fs2.text.hex
+import scodec.bits.ByteVector
 
 object Socks5App extends IOApp.Simple:
 
@@ -54,10 +55,9 @@ object Socks5App extends IOApp.Simple:
     yield
       s"${clientRemoteAddress.port} -> ${targetLocalAddress.port}"
 
-
   val run: IO[Unit] =
     for
-      _ <- server[IO]
+      _ <- IO.println(ByteVector(0x12, 0x34).toInt())
     yield
       ()
 end Socks5App

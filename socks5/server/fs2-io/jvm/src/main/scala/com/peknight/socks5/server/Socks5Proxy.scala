@@ -1,12 +1,13 @@
-package com.peknight.socks5
+package com.peknight.socks5.server
 
-import java.net.{InetSocketAddress, SocketAddress}
-import java.nio.channels.ServerSocketChannel
 import cats.effect.*
 import cats.syntax.all.*
 import com.comcast.ip4s.port
 import fs2.*
 import fs2.io.net.*
+
+import java.net.{InetSocketAddress, SocketAddress}
+import java.nio.channels.ServerSocketChannel
 
 object Socks5Proxy { //extends IOApp {
 
@@ -208,4 +209,119 @@ object Socks5Proxy { //extends IOApp {
   //       )
   //     }
   // }
+
+  // import java.net.InetSocketAddress
+  // import scala.concurrent.duration.FiniteDuration
+
+  // trait Socks5Api[F[_]] {
+  //   // 协商阶段：处理客户端发送的初始协商请求
+  //   def handleNegotiation(clientMethods: List[AuthMethod]): F[SelectedAuthMethod]
+
+  //   // 认证阶段：根据所选方法处理认证
+  //   def handleAuthentication(method: AuthMethod, payload: Array[Byte]): F[AuthResult]
+
+  //   // 请求阶段：处理客户端的连接请求
+  //   def handleRequest(request: Socks5Request): F[Socks5Response]
+
+  //   // 建立TCP连接（用于CONNECT命令）
+  //   def establishTcpConnection(address: InetSocketAddress, timeout: FiniteDuration): F[Unit]
+
+  //   // 绑定本地端口（用于BIND命令）
+  //   def bindLocalPort(port: Int): F[InetSocketAddress]
+
+  //   // 建立UDP关联（用于UDP ASSOCIATE命令）
+  //   def establishUdpAssociation(clientAddress: InetSocketAddress): F[InetSocketAddress]
+
+  //   // 数据传输：转发客户端到目标的数据
+  //   def forwardToTarget(clientData: Array[Byte], target: InetSocketAddress): F[Array[Byte]]
+
+  //   // 数据传输：转发目标到客户端的数据
+  //   def forwardToClient(targetData: Array[Byte], client: InetSocketAddress): F[Unit]
+
+  //   // 关闭连接
+  //   def closeConnection(client: InetSocketAddress): F[Unit]
+  // }
+
+  // // 协议数据结构定义
+  // sealed trait AuthMethod
+
+  // object AuthMethod {
+  //   case object NoAuth extends AuthMethod
+
+  //   case object Gssapi extends AuthMethod
+
+  //   case object Password extends AuthMethod
+
+  //   case object NoAcceptable extends AuthMethod
+
+  //   case class IanaAssigned(value: Byte) extends AuthMethod
+
+  //   case class PrivateMethod(value: Byte) extends AuthMethod
+  // }
+
+  // case class SelectedAuthMethod(method: AuthMethod)
+
+  // sealed trait AuthResult
+
+  // object AuthResult {
+  //   case object Success extends AuthResult
+
+  //   case object Failure extends AuthResult
+  // }
+
+  // sealed trait Socks5Command
+
+  // object Socks5Command {
+  //   case object Connect extends Socks5Command
+
+  //   case object Bind extends Socks5Command
+
+  //   case object UdpAssociate extends Socks5Command
+  // }
+
+  // sealed trait AddressType
+
+  // object AddressType {
+  //   case object IPv4 extends AddressType
+
+  //   case object DomainName extends AddressType
+
+  //   case object IPv6 extends AddressType
+  // }
+
+  // case class Socks5Request(
+  //                           command: Socks5Command,
+  //                           addressType: AddressType,
+  //                           address: String,
+  //                           port: Int
+  //                         )
+
+  // sealed trait Socks5ResponseStatus
+
+  // object Socks5ResponseStatus {
+  //   case object Succeeded extends Socks5ResponseStatus
+
+  //   case object GeneralSocksServerFailure extends Socks5ResponseStatus
+
+  //   case object ConnectionNotAllowedByRuleset extends Socks5ResponseStatus
+
+  //   case object NetworkUnreachable extends Socks5ResponseStatus
+
+  //   case object HostUnreachable extends Socks5ResponseStatus
+
+  //   case object ConnectionRefused extends Socks5ResponseStatus
+
+  //   case object TtlExpired extends Socks5ResponseStatus
+
+  //   case object CommandNotSupported extends Socks5ResponseStatus
+
+  //   case object AddressTypeNotSupported extends Socks5ResponseStatus
+  // }
+
+  // case class Socks5Response(
+  //                            status: Socks5ResponseStatus,
+  //                            boundAddress: String,
+  //                            boundPort: Int
+  //                          )
+
 }
