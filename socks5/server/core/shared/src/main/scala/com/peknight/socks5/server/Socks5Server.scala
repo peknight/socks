@@ -21,7 +21,6 @@ import scodec.bits.ByteVector
 import java.nio.charset.Charset
 
 object Socks5Server extends IOApp.Simple:
-  val negotiationStream: Stream[IO, Byte] = Stream(0x05, 0x01, 0x00)
 
   private def readVersion[F[_]](input: Stream[F, Byte])(f: Byte => Option[Error])
   : Pull[F, Nothing, Either[Error, Stream[F, Byte]]] =
@@ -104,6 +103,8 @@ object Socks5Server extends IOApp.Simple:
       case UsernamePassword => passwordAuth(input)(password)
       case method @ IANAAssigned(code) => ???
       case method @ PrivateMethod(code) => ???
+
+  val negotiationStream: Stream[IO, Byte] = Stream(0x05, 0x01, 0x00)
 
   val run: IO[Unit] =
     for
