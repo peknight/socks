@@ -1,5 +1,3 @@
-package com.peknight.socks5.server
-
 import cats.effect.*
 import cats.syntax.all.*
 import com.comcast.ip4s.port
@@ -241,60 +239,6 @@ object Socks5Proxy { //extends IOApp {
   //   // 关闭连接
   //   def closeConnection(client: InetSocketAddress): F[Unit]
   // }
-
-  // // 协议数据结构定义
-  // sealed trait AuthMethod
-
-  // object AuthMethod {
-  //   case object NoAuth extends AuthMethod
-
-  //   case object Gssapi extends AuthMethod
-
-  //   case object Password extends AuthMethod
-
-  //   case object NoAcceptable extends AuthMethod
-
-  //   case class IanaAssigned(value: Byte) extends AuthMethod
-
-  //   case class PrivateMethod(value: Byte) extends AuthMethod
-  // }
-
-  // case class SelectedAuthMethod(method: AuthMethod)
-
-  // sealed trait AuthResult
-
-  // object AuthResult {
-  //   case object Success extends AuthResult
-
-  //   case object Failure extends AuthResult
-  // }
-
-  // sealed trait Socks5Command
-
-  // object Socks5Command {
-  //   case object Connect extends Socks5Command
-
-  //   case object Bind extends Socks5Command
-
-  //   case object UdpAssociate extends Socks5Command
-  // }
-
-  // sealed trait AddressType
-
-  // object AddressType {
-  //   case object IPv4 extends AddressType
-
-  //   case object DomainName extends AddressType
-
-  //   case object IPv6 extends AddressType
-  // }
-
-  // case class Socks5Request(
-  //                           command: Socks5Command,
-  //                           addressType: AddressType,
-  //                           address: String,
-  //                           port: Int
-  //                         )
 
   // sealed trait Socks5ResponseStatus
 

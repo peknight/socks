@@ -28,10 +28,10 @@ object Method:
   case object UsernamePassword extends AuthRequiredMethod:
     val code: Byte = 0x02
   end UsernamePassword
-  case class IANAAssigned(override val code: Byte) extends AuthRequiredMethod:
+  case class IANAAssigned(code: Byte) extends AuthRequiredMethod:
     require(code >= 0x03 && code <= 0x7F)
   end IANAAssigned
-  case class PrivateMethod(override val code: Byte) extends AuthRequiredMethod:
+  case class PrivateMethod(code: Byte) extends AuthRequiredMethod:
     require {
       val c = code & 0xFF
       c >= 0x80 && c <= 0xFE

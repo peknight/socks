@@ -1,5 +1,3 @@
-package com.peknight.socks5.server
-
 import cats.Monad
 import cats.effect.std.Console
 import cats.effect.{Concurrent, IO, IOApp}
