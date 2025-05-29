@@ -8,7 +8,7 @@ import com.peknight.cats.ext.instances.eitherT.eitherTMonad
 import com.peknight.error.Error
 import com.peknight.error.syntax.either.value
 import com.peknight.socks.SocksVersion.socks5
-import com.peknight.socks.error.{PasswordVersionEmpty, Socks5VersionEmpty, UnsupportedSocksVersion}
+import com.peknight.socks.error.UnsupportedSocksVersion
 import com.peknight.socks5.*
 import com.peknight.socks5.auth.Method
 import com.peknight.socks5.auth.Method.*
